@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Image Captioning - Result</title>
+    <style>
+        /* Dark mode and glassmorphism styles */
+        body {
+            background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 100px;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-header {
+            background-color: transparent;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            border-bottom: none;
+            text-transform: uppercase;
+        }
+
+        .card-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h4, h5 {
+            color: #ff007f;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 5px;
+            font-size: 1.1rem;
+            color: #bdbdbd;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-primary {
+            background-color: #ff007f;
+            border-color: #ff007f;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #d4006d;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-top: auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ff007f;
+        }
+
+        /* Media Queries */
+        @media (max-width: 576px) {
+            .card-header {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                max-width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container d-flex justify-content-center">
+        <a class="navbar-brand" href="#">Image Captioning</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Generated Caption</h2>
+        </div>
+        <div class="card-body text-center">
+            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image">
+            <h4><strong>Caption:</strong> {{ generated_caption }}</h4>
+            <h5>Actual Captions:</h5>
+            <ul>
+                {% for caption in actual_captions %}
+                    <li>{{ caption }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="text-center mb-4">
+            <a href="/" class="btn btn-primary">Upload Another Image</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Image Captioning App. All rights reserved.<br>
+    Made by Kshitij The Don</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
